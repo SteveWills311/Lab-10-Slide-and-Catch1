@@ -1,0 +1,55 @@
+Steve Wills
+11/6/24
+Slide and Catch Algo
+
+import random, pygame, simpleGE
+
+create a class called Ball(simpleGe.Sprite)
+	def init(self, scene)
+		super init(scene)
+		set image (golfball.png)
+		set size
+		set min and max speed
+		self.reset()
+
+	#This reset function will determine the ball's spawn location and fall speed
+	
+	def reset(self):
+		self.y = 15
+		self.x = random int 15, 625 (Doing this to create a buffer as opposed to using 0, self.screenWidth)
+		self.dy = random int (self.minSpeed, self.maxSpeed)
+
+	#check boundaries
+
+	def checkBounds(self):
+		if self.bottom > self.screenHeight:
+			self.reset()
+
+create class TinCup(simpleGe.Sprite)
+	def init (self, scene)
+	super init (scene)
+	set image (tincup.png)
+	set size
+	set position 320, 400
+	set moveSpeed 15
+
+	def process(self)
+		if self.isKeyPressed(pygame.K_LEFT):
+			self.x -= self.movespeed
+		if self.isKeyPressed(pygame.K_RIGHT):
+			self.y += self.movespeed
+
+create Game class(simpleGE.Scene):
+	def init (self)
+		super init()
+		set image background
+		self.TinCup = TinCup(self)
+		self.Ball = Ball(self)
+		self.sprites = [self.TinCup, self.Ball]
+
+	def process(self)
+		if self.TinCup.collidesWith(self.Ball):
+			self.Ball.reset()
+
+all the 'main' things... 
+	
